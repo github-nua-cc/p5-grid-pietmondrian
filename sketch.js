@@ -1,6 +1,7 @@
 const CANVAS_SIZE = 800;
 const NUMBER_OF_CELLS = 20;
 const CELL_SIZE = CANVAS_SIZE / NUMBER_OF_CELLS;
+const COLORS_ARRAY = ["#fae317", "#f50f0f", "#0d7fbe", "#f3f3f3", "#000000"];
 
 function preload() {}
 
@@ -11,27 +12,36 @@ function setup() {
   // define a background color for the canvas
   background(220);
 
+  // set a stroke
+  strokeWeight(5);
+
+  //define x and y
+  let x = 0;
+  let y = 0;
+
   // loop through canvas to create grid
-  for (let row = 0; row < NUMBER_OF_CELLS; row++) {
-    for (let column = 0; column < NUMBER_OF_CELLS; column++) {
+  while (y < CANVAS_SIZE) {
+    //reset x
+    x = 0;
+    while (x < CANVAS_SIZE) {
       // calculate random color
-      const red = random(255);
-      const green = random(255);
-      const blue = random(255);
+      const cellColor = random(COLORS_ARRAY);
 
       //set fill
-      fill(red, green, blue);
-
-      //calculate position
-      const xPosition = row * CELL_SIZE;
-      const yPosition = column * CELL_SIZE;
+      fill(cellColor);
 
       //calculate size
       const width = CELL_SIZE;
       const height = CELL_SIZE;
 
       //draw image
-      rect(xPosition, yPosition, width, height);
+      rect(x, y, width, height);
+
+      //update x
+      x = x + CELL_SIZE;
     }
+    
+    //update y
+    y = y + CELL_SIZE;
   }
 }
