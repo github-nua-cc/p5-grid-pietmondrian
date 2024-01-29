@@ -12,36 +12,28 @@ function setup() {
   // define a background color for the canvas
   background(220);
 
-  // set a stroke
+  //set stroke
   strokeWeight(5);
 
-  //define x and y
-  let x = 0;
-  let y = 0;
-
   // loop through canvas to create grid
-  while (y < CANVAS_SIZE) {
-    //reset x
-    x = 0;
-    while (x < CANVAS_SIZE) {
+  for (let row = 0; row < NUMBER_OF_CELLS; row++) {
+    for (let column = 0; column < NUMBER_OF_CELLS; column++) {
       // calculate random color
       const cellColor = random(COLORS_ARRAY);
 
       //set fill
       fill(cellColor);
 
+      //calculate position
+      const xPosition = row * CELL_SIZE;
+      const yPosition = column * CELL_SIZE;
+
       //calculate size
       const width = CELL_SIZE;
       const height = CELL_SIZE;
 
       //draw image
-      rect(x, y, width, height);
-
-      //update x
-      x = x + CELL_SIZE;
+      rect(xPosition, yPosition, width, height);
     }
-    
-    //update y
-    y = y + CELL_SIZE;
   }
 }
