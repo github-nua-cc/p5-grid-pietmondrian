@@ -31,7 +31,9 @@ function setup() {
   // loop through canvas to create grid
   while (y < CANVAS_SIZE) {
     //set height
-    const height = random(POSSIBLE_SIZES);
+    let height = random(POSSIBLE_SIZES);
+    if(y + height > CANVAS_SIZE) height = CANVAS_SIZE - y;
+
     //reset x
     x = 0;
     while (x < CANVAS_SIZE) {
@@ -42,7 +44,8 @@ function setup() {
       fill(cellColor);
 
       //calculate size
-      const width = random(POSSIBLE_SIZES);
+      let width = random(POSSIBLE_SIZES);
+      if(x + width > CANVAS_SIZE) width = CANVAS_SIZE - x;
 
       //draw image
       rect(x, y, width, height);
